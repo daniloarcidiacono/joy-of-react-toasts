@@ -13,13 +13,13 @@ export function ToastProvider({ children }) {
   const addToast = React.useCallback((newToast) => {
     setToasts(
       currentToasts => {
-        const newToasts = currentToasts.map(toast => ({...toast}));
-        newToasts.unshift({
-          ...newToast,
-          id: crypto.randomUUID()
-        });
-
-        return newToasts;
+        return [
+          {
+            ...newToast,
+            id: crypto.randomUUID()
+          },
+          ...currentToasts
+        ];
       }
     );
   }, []);
@@ -27,9 +27,7 @@ export function ToastProvider({ children }) {
   const closeToast = React.useCallback((id) => {
     setToasts(
       currentToasts => {
-        return currentToasts
-          .map(toast => (toast.id !== id ? {...toast} : null))
-          .filter(toast => toast != null);        
+        return currentToasts.filter(toast => toast.id !== id);        
       }
     );
   }, []);
