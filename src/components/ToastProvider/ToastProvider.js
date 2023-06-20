@@ -1,4 +1,5 @@
 import React from "react";
+import { useKeypress } from "../../hooks/use-keypress";
 
 export const ToastsContext = React.createContext();
 
@@ -37,6 +38,8 @@ export function ToastProvider({ children }) {
     setToasts([]);
   }, []);
 
+  useKeypress('Escape', clearToasts);
+  
   const context = {
     toasts,
     addToast,
