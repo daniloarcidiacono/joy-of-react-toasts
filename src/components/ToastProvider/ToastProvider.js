@@ -4,7 +4,7 @@ export const ToastsContext = React.createContext();
 
 export function ToastProvider({ children }) {
   console.log("ToastProvider()");
-  
+
   // Added toasts
   const [toasts, setToasts] = React.useState([]);
 
@@ -33,10 +33,15 @@ export function ToastProvider({ children }) {
     );
   }, []);
 
+  const clearToasts = React.useCallback((id) => {
+    setToasts([]);
+  }, []);
+
   const context = {
     toasts,
     addToast,
-    closeToast
+    closeToast,
+    clearToasts
   };
   
   return (

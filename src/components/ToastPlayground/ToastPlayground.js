@@ -11,7 +11,7 @@ function ToastPlayground() {
   console.log("ToastPlayground()");
 
   // Toasts handling
-  const { addToast, closeToast } = React.useContext(ToastsContext);
+  const { addToast } = React.useContext(ToastsContext);
 
   // Focus
   const messageInputRef = React.useRef();
